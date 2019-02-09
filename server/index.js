@@ -1,6 +1,13 @@
 const app = require('express')();
+const { renderToString } = require('react-dom/server');
+
+console.log(renderToString)
 
 app.use(require('cors')())
+
+app.get('/posts', (req, res) => {
+  res.send('ok')
+});
 
 app.get('/api/posts', (req, res) => {
   res.send([{
