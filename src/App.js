@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import './App.css'
+import { PostList } from './components/PostList'
+// import './App.css'
 
 export default class App extends Component {
   state = {
@@ -16,9 +17,7 @@ export default class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          {this.state.posts.map(post => (
-            <div id={post.title}>{post.title}</div>
-          ))}
+          <PostList posts={this.state.posts} />
         </header>
       </div>
     )
