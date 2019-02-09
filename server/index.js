@@ -1,3 +1,5 @@
+// @flow weak
+
 import React from 'react'
 import express from 'express'
 import { renderToString } from 'react-dom/server'
@@ -24,10 +26,11 @@ const posts = [
   },
 ]
 
-const getStatic = a => /\/static.+\.js$/.test(a)
+const getStatic = (a: string) => /\/static.+\.js$/.test(a)
+// $FlowFixMe
 const assets = Object.values(require('../build/asset-manifest.json')).filter(getStatic)
 
-const template = ({ title, meta, styles, body }) => `
+const template = ({ title, styles, body, meta }) => `
 <!DOCTYPE html>
 <html>
   <head>
@@ -48,7 +51,7 @@ app.get('/posts', (req, res) => {
   const styles = sheet.getStyleTags()
   const helmet = Helmet.renderStatic()
   const title = helmet.title.toString()
-  res.send(template({ title, styles, body }))
+  res.send(template({ title, styles, body, meta: '' }))
 })
 
 app.get('/posts/1', (req, res) => {
