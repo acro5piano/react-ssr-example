@@ -1,4 +1,4 @@
-# ssr-test
+# React SSR Example
 
 This repository shows how to implement server side rendering from scratch.
 
